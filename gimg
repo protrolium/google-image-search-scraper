@@ -1,1 +1,28 @@
-/usr/local/bin/gimg
+#!/bin/bash
+google-image "$1" $2 --opts tbs=isz:lt,islt:xga,itp:photo > urls.txt
+parallel=5
+user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36"
+(i=0; while read url; do wget -e robots=off -T10 --tries 10 -U"$user_agent" "$url" -O`printf %04d $i`.jpg & i=$(($i+1)) ; [ $(($i % $parallel)) = 0 ] && wait; done < urls.txt; wait)
+
+
+# Default setting isz:lt,islt:xga,itp:photo
+# Last setting isz:ex,iszw:1000,iszh:1000,itp:photo,itp:photo
+
+# Image size larger than 400×300: tbs=isz:lt,islt:qsvga
+# Image size larger than 640×480: tbs=isz:lt,islt:vga
+# Image size larger than 800×600: tbs=isz:lt,islt:svga
+# Image size larger than 1024×768: tbs=isz:lt,islt:xga
+# Image size larger than 1600×1200: tbs=isz:lt,islt:2mp
+# Image size larger than 2272×1704: tbs=isz:lt,islt:4mp
+# Image sized exactly 1000×1000: tbs=isz:ex,iszw:1000,iszh:1000
+# Images in full color: tbs=ic:color
+# Images in black and white: tbs=ic:gray
+# Images that are red: tbs=ic:specific,isc:red [orange, yellow, green, teal, blue, purple, pink, white, gray, black, brown]
+#Image type Face: tbs=itp:face
+# Image type Photo: tbs=itp:photo
+# Image type Clipart: tbs=itp:clipart
+# Image type Line drawing: tbs=itp:lineart
+# Image type Animated (gif): tbs=itp:animated
+
+# more information:
+# https://stackoverflow.com/a/61982397
