@@ -1,8 +1,9 @@
 # Google Image Search Scraper
-batch image scraper for compiling image data sets based on keywords
+### batch image scraper for compiling image data sets based on keywords
+
+location of scripts:
 <br>
-location of scripts:<br>
-`usr/local/bin`
+`usr/local/bin`<br>
 <br>
 make executable:<br>
 `sudo chmod +x gimg`
