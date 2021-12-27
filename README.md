@@ -15,3 +15,5 @@ location of scripts:
 make executable:<br>
 `sudo chmod +x gimg`
 <br>
+to fix chromedriver errors run<br>
+`$ brew upgrade chromedriver`
