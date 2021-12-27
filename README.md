@@ -13,7 +13,7 @@ location of scripts:
 `usr/local/bin`<br>
 <br>
 make executable:<br>
-`sudo chmod +x gimg`
+`sudo chmod +x gimg`<br>
 <br>
 to fix chromedriver errors run<br>
 `$ brew upgrade chromedriver`
